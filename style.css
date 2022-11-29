@@ -35,12 +35,15 @@ body {
 	flex-direction:column;
 	background:#15141f;
 	border-radius:8px;
+	overflow-wrap: break-word;
 }
 
-#answer {
+#currNumber {
 	align-self: flex-end;
-	font-size:3em;
+	font-size:2.6em;
 	margin:5px;
+	max-width: 100%;
+	min-height: 36px;
 }
 
 .buttons {
@@ -66,18 +69,21 @@ button:hover {
 }
 
 
-.op {
+.op,
+.clear {
 	color:#fff;
 	background:var(--site-accent-color);
 }
 
 .pending {
-	height:40px;
 	display:flex;
+	flex-wrap: wrap;
+	max-width: 100%;
 	align-items:flex-end;
 	justify-content:flex-end;
 	font-size:1.8em;
 	color:#ccc;
+	gap:5px;
 }
 
 
