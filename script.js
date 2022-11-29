@@ -1,9 +1,39 @@
-const currNumber = document.querySelector('#currNumber');
-const previousNumber = document.querySelector('.prev');
+const currNumber = document.querySelector('.currNumber');
+const prevNumber = document.querySelector('.prevNumber');
 const pending = document.querySelector('.pending');
 const clearButton = document.querySelector('#clearButton');
 const backspaceButton = document.querySelector('#backSpaceButton');
 const numbers = document.querySelectorAll('.numbers');
+const operators = document.querySelectorAll('.op');
+
+
+
+function operate(e) {
+	const operation = e.currentTarget.id;
+	prevNumber.textContent = currNumber.textContent;
+	currNumber.textContent = '0';
+
+	switch(operation) {
+		case 'add':
+			prevNumber.textContent += ' +';
+			break;
+		case 'subtract':
+			prevNumber.textContent += ' -';
+			break;
+		case 'multiply':
+			prevNumber.textContent += ' x';
+			break;
+		case 'divide':
+			prevNumber.textContent += ' /';
+			break;
+		case 'modulo':
+			prevNumber.textContent += ' %';
+			break;
+		case 'equals':
+			break;
+			
+	}
+}
 
 function appendDigit(e) {
 	const digit = e.currentTarget.id;
@@ -33,7 +63,7 @@ function inputNumber(event) {
 
 clearButton.addEventListener('click', () => {
 	currNumber.textContent = '0';
-	previousNumber.textContent = '';
+	prevNumber.textContent = '';
 })
 
 backspaceButton.addEventListener('click', () => {
@@ -50,6 +80,11 @@ numbers.forEach(number => {
 })
 
 
-window.addEventListener('keypress', inputNumber);
+operators.forEach(operator => {
+	operator.addEventListener('click', operate);
+})
 
+
+window.addEventListener('keypress', inputNumber);
+prevNumber.textContent = '';
 currNumber.textContent = '0';

@@ -36,9 +36,10 @@ body {
 	background:#15141f;
 	border-radius:8px;
 	overflow-wrap: break-word;
+	text-align: right;
 }
 
-#currNumber {
+.currNumber {
 	align-self: flex-end;
 	font-size:2.6em;
 	margin:5px;
@@ -86,6 +87,9 @@ button:hover {
 	gap:5px;
 }
 
+.prevNumber {
+	font-size:1.6em;
+}
 
 #equals{
 	background:#1088eb;
