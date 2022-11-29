@@ -1,3 +1,9 @@
+:root {
+	--site-main-background:#fff;
+	--site-accent-color:#FC6F3C;
+}
+
+
 * {
 	box-sizing:border-box;
 }
@@ -5,4 +11,70 @@
 body {
 	margin:0;
 	padding:0;
+	background:#14151f;
+	font-family: Calibri;
+}
+
+.calc-body {
+	background:white;
+	margin:50px auto;
+	width:400px;
+	display:flex;
+	flex-direction: column;
+	padding:20px;
+	border-radius:8px;
+	border:1px solid #ccc;
+	box-shadow:2px 2px #ccc;
+}
+
+.results {
+	border-bottom:2px solid black;
+	display:flex;
+	flex-direction:column;
+}
+
+#answer {
+	align-self: flex-end;
+	font-size:3em;
+}
+
+.buttons {
+	display:grid;
+	grid-template-columns:repeat(4, 1fr);
+	grid-auto-rows:100px;
+}
+
+button {
+	border:none;
+	font-size: 2em;
+	background:transparent;
+	margin:10px;
+	border-radius:50%;
+}
+
+
+
+button:hover {
+
+	cursor:pointer;
+	background:#cecece;
+}
+
+
+.op {
+	color:var(--site-accent-color);
+}
+
+.pending {
+	height:40px;
+	display:flex;
+	align-items:flex-end;
+	justify-content:flex-end;
+	font-size:1.8em;
+	color:#ccc;
+}
+
+
+#equals{
+
 }
