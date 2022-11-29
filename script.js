@@ -7,7 +7,7 @@ const numbers = document.querySelectorAll('.numbers');
 
 function appendDigit(e) {
 	const digit = e.currentTarget.id;
-
+	console.log("hello")
 	if(currNumber.textContent == '0') {
 		currNumber.textContent = digit;
 	} else {
@@ -17,11 +17,17 @@ function appendDigit(e) {
 
 
 function inputNumber(event) {
-	event.preventDefault();
 	for(let i = 48; i < 58; i++) {
-		if(event.keyCode === i) {
+		if(currNumber.textContent === '0') {
+			console.log("Trigger1")
+			currNumber.textContent = String.fromCharCode(event.keyCode)
+			return;
+		} else if(event.keyCode === i) {
+			console.log("Trigger2")
 			currNumber.textContent += String.fromCharCode(event.keyCode)
-		}	
+			return;
+		}
+
 	}
 }
 
@@ -42,10 +48,6 @@ backspaceButton.addEventListener('click', () => {
 numbers.forEach(number => {
 	number.addEventListener('click', appendDigit)
 })
-
-
-
-
 
 
 window.addEventListener('keypress', inputNumber);
