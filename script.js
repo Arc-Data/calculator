@@ -2,6 +2,7 @@ const resultScreen = document.querySelector('.resultScreen');
 const operationScreen = document.querySelector('.operationScreen');
 const numbers = document.querySelectorAll('.numbers');
 const backspaceButton = document.querySelector('#backspace');
+const clearButton = document.querySelector('#clear');
 const operators = document.querySelectorAll('.op')
 const equalsButton = document.querySelector('#equals')
 
@@ -20,6 +21,7 @@ function moveScreen() {
 }
 
 function checkOperation(operation) {
+	if(resultScreen.textContent == 'NaN') return;
 	if(currentOperation) {
 		return evaluate()
 	};
@@ -27,12 +29,21 @@ function checkOperation(operation) {
 	moveScreen();
 }
 
+function displayNaN() {
+	operationScreen.textContent = '';
+	resultScreen.textContent = 'NaN';
+}
+
 function evaluate() {
-	if(!currentOperation) return;
+	if(!currentOperation || resultScreen.textContent == 'NaN') return;
 	num1 = Number(num1);
 	num2 = Number(resultScreen.textContent);
 	
-	if(currentOperation == '/' && num2 == 0) return;
+	if(currentOperation == '/' && num2 == 0) {
+		displayNaN();
+		return;
+	}
+	console.log("still went here")
 	operate(num1, num2);
 }
 
@@ -79,6 +90,10 @@ function divide(a, b) {
 }
 
 function backSpace() {
+	if(resultScreen.textContent = 'NaN') {
+		resultScreen.textContent = '0';
+		return;
+	}
 	if(resultScreen.textContent == '0') return;
 	const text = resultScreen.textContent;
 
@@ -100,13 +115,21 @@ function handleInput(e) {
 
 function appendDigit(digit) {
 	if(shouldMoveScreen) moveScreen(); 
-	if(resultScreen.textContent == '0') {
+	if(resultScreen.textContent == '0' || resultScreen.textContent == 'NaN') {
 		resultScreen.textContent = digit;
 		return;
 	} 
 
 	resultScreen.textContent += digit;
 }
+
+clearButton.addEventListener('click', () => {
+	num1 = '';
+	currentOperation = ''
+	shouldMoveScreen = false;
+	resultScreen.textContent = '0';
+	operationScreen.textContent = '';
+})
 
 equalsButton.addEventListener('click', evaluate);
 
