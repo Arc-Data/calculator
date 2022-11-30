@@ -24,6 +24,8 @@ function evaluate() {
 	if(!currentOperation) return;
 	num1 = Number(num1);
 	num2 = Number(resultScreen.textContent);
+	
+	if(currentOperation == '/' && num2 == 0) return;
 	operate(num1, num2);
 }
 
@@ -33,9 +35,16 @@ function operate(a, b) {
 		case '+':
 			text = add(a, b);
 			break;
-
+		case '-':
+			text = subtract(a, b);
+			break;
+		case '*':
+			text = multiply(a, b);
+			break;
+		case '/':
+			text = divide(a, b);
+			break;
 	}
-
 	operationScreen.textContent = `${a} ${currentOperation} ${b}`
 	resultScreen.textContent = text;
 	currentOperation = ''
@@ -43,6 +52,21 @@ function operate(a, b) {
 
 function add(a, b) {
 	return a + b;
+}
+
+
+function subtract(a, b) {
+	return a - b;
+}
+
+
+function multiply(a, b) {
+	return a * b;
+}
+
+
+function divide(a, b) {
+	return a / b;
 }
 
 function backSpace() {
