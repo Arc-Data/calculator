@@ -94,5 +94,10 @@ button:hover {
 #equals{
 	background:#1088eb;
 	color:white;
-	grid-column:3/5;
+	grid-column:4;
+	grid-row:4/6;
+}
+
+.zero {
+	grid-column:1/3;
 }

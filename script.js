@@ -4,36 +4,27 @@ const pending = document.querySelector('.pending');
 const clearButton = document.querySelector('#clearButton');
 const backspaceButton = document.querySelector('#backSpaceButton');
 const numbers = document.querySelectorAll('.numbers');
-const operators = document.querySelectorAll('.op');
 
+let prevOperation = '';
+let operand1 = 0;
+let operand2 = 0;
 
-
-function operate(e) {
-	const operation = e.currentTarget.id;
-	prevNumber.textContent = currNumber.textContent;
-	currNumber.textContent = '0';
-
-	switch(operation) {
-		case 'add':
-			prevNumber.textContent += ' +';
-			break;
-		case 'subtract':
-			prevNumber.textContent += ' -';
-			break;
-		case 'multiply':
-			prevNumber.textContent += ' x';
-			break;
-		case 'divide':
-			prevNumber.textContent += ' /';
-			break;
-		case 'modulo':
-			prevNumber.textContent += ' %';
-			break;
-		case 'equals':
-			break;
-			
-	}
+function add() {
+	return operand1 + operand2;
 }
+
+function subtract() {
+	return operand1 - operand2;
+}
+
+function divide() {
+	return operand1 / operand2;
+}
+
+function modulo() {
+	return operand1 % operand2;
+}
+
 
 function appendDigit(e) {
 	const digit = e.currentTarget.id;
@@ -47,23 +38,21 @@ function appendDigit(e) {
 
 
 function inputNumber(event) {
-	for(let i = 48; i < 58; i++) {
-		if(currNumber.textContent === '0') {
-			console.log("Trigger1")
-			currNumber.textContent = String.fromCharCode(event.keyCode)
-			return;
-		} else if(event.keyCode === i) {
-			console.log("Trigger2")
-			currNumber.textContent += String.fromCharCode(event.keyCode)
+	if(event.key == 0 && currNumber.textContent == '0') return;
+	if(event.key = 1 && event.key <= 9) {
+		if(currNumber.textContent == '0') {
+			currNumber.textContent = event.key;
 			return;
 		}
 
+		currNumber.textContent += event.key;
 	}
 }
 
 clearButton.addEventListener('click', () => {
 	currNumber.textContent = '0';
 	prevNumber.textContent = '';
+	pendingOperations = [];
 })
 
 backspaceButton.addEventListener('click', () => {
@@ -79,10 +68,6 @@ numbers.forEach(number => {
 	number.addEventListener('click', appendDigit)
 })
 
-
-operators.forEach(operator => {
-	operator.addEventListener('click', operate);
-})
 
 
 window.addEventListener('keypress', inputNumber);
