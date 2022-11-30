@@ -3,8 +3,9 @@ const operationScreen = document.querySelector('.operationScreen');
 const numbers = document.querySelectorAll('.numbers');
 const backspaceButton = document.querySelector('#backspace');
 const clearButton = document.querySelector('#clear');
-const operators = document.querySelectorAll('.op')
-const equalsButton = document.querySelector('#equals')
+const operators = document.querySelectorAll('.op');
+const equalsButton = document.querySelector('#equals');
+const dotButton = document.querySelector('#dot');
 
 let isDecimal = false;
 let num1 = '';
@@ -111,6 +112,12 @@ function handleInput(e) {
 	else if (e.key == 'Enter' || e.key == '=') evaluate();
 }
 
+function appendDecimal() {
+	console.log(resultScreen.textContent.indexOf('.') !== -1)
+	if(resultScreen.textContent.indexOf('.') !== -1) return;
+	resultScreen.textContent += '.';
+}
+
 
 
 function appendDigit(digit) {
@@ -122,6 +129,9 @@ function appendDigit(digit) {
 
 	resultScreen.textContent += digit;
 }
+
+
+dotButton.addEventListener('click', appendDecimal);
 
 clearButton.addEventListener('click', () => {
 	num1 = '';
