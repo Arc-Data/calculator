@@ -9,15 +9,22 @@ let isDecimal = false;
 let num1 = '';
 let num2 = '';
 let currentOperation = '';
+let shouldMoveScreen = false;
+
+
+function moveScreen() {
+	num1 = resultScreen.textContent;
+	resultScreen.textContent = 0;
+	operationScreen.textContent = `${num1} ${currentOperation}`
+	shouldMoveScreen = false;
+}
 
 function checkOperation(operation) {
 	if(currentOperation) {
 		return evaluate()
 	};
-	num1 = resultScreen.textContent;
-	resultScreen.textContent = 0;
-	operationScreen.textContent = `${num1} ${operation}`
 	currentOperation = operation;
+	moveScreen();
 }
 
 function evaluate() {
@@ -48,6 +55,7 @@ function operate(a, b) {
 	operationScreen.textContent = `${a} ${currentOperation} ${b}`
 	resultScreen.textContent = text;
 	currentOperation = ''
+	shouldMoveScreen = true;
 }
 
 function add(a, b) {
@@ -85,7 +93,10 @@ function handleInput(e) {
 	else if(e.key === 'Backspace') backSpace();
 }
 
+
+
 function appendDigit(digit) {
+	if(shouldMoveScreen) moveScreen(); 
 	if(resultScreen.textContent == '0') {
 		resultScreen.textContent = digit;
 		return;
