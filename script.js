@@ -108,7 +108,7 @@ function handleInput(e) {
 	if(e.key >= 0 && e.key <= 9) appendDigit(e.key)
 	else if(e.key === 'Backspace') backSpace();
 	else if (e.key == '/' || e.key == '+' || e.key == '-' || e.key == '*') checkOperation(e.key)
-	else if (e.key == '=') evaluate();
+	else if (e.key == 'Enter' || e.key == '=') evaluate();
 }
 
 
