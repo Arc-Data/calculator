@@ -38,6 +38,8 @@ function appendDigit(e) {
 
 
 function inputNumber(event) {
+	event.preventDefault();
+	console.log(event.keyCode)
 	if(event.key == 0 && currNumber.textContent == '0') return;
 	if(event.key = 1 && event.key <= 9) {
 		if(currNumber.textContent == '0') {
@@ -47,6 +49,20 @@ function inputNumber(event) {
 
 		currNumber.textContent += event.key;
 	}
+
+	if(event.key === 'Backspace') {
+		console.log("hello")
+		backSpace();
+	}
+}
+
+function backSpace() {
+	const digits = currNumber.textContent;
+	if(digits == '0') return;
+	currNumber.textContent = digits.slice(0, digits.length - 1);
+	if(!currNumber.textContent) {
+		currNumber.textContent = '0';
+	}
 }
 
 clearButton.addEventListener('click', () => {
@@ -55,14 +71,7 @@ clearButton.addEventListener('click', () => {
 	pendingOperations = [];
 })
 
-backspaceButton.addEventListener('click', () => {
-	const digits = currNumber.textContent;
-	if(digits == '0') return;
-	currNumber.textContent = digits.slice(0, digits.length - 1);
-	if(!currNumber.textContent) {
-		currNumber.textContent = '0';
-	}
-})
+backspaceButton.addEventListener('click', backSpace);
 
 numbers.forEach(number => {
 	number.addEventListener('click', appendDigit)
@@ -70,6 +79,6 @@ numbers.forEach(number => {
 
 
 
-window.addEventListener('keypress', inputNumber);
+window.addEventListener('keydown', inputNumber);
 prevNumber.textContent = '';
 currNumber.textContent = '0';
