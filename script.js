@@ -90,7 +90,7 @@ function divide(a, b) {
 }
 
 function backSpace() {
-	if(resultScreen.textContent = 'NaN') {
+	if(resultScreen.textContent == 'NaN') {
 		resultScreen.textContent = '0';
 		return;
 	}
