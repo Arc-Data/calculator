@@ -47,6 +47,7 @@ function operate(a, b) {
 			break;
 		case '*':
 			text = multiply(a, b);
+			console.log(text);
 			break;
 		case '/':
 			text = divide(a, b);
@@ -91,6 +92,8 @@ function backSpace() {
 function handleInput(e) {
 	if(e.key >= 0 && e.key <= 9) appendDigit(e.key)
 	else if(e.key === 'Backspace') backSpace();
+	else if (e.key == '/' || e.key == '+' || e.key == '-' || e.key == '*') checkOperation(e.key)
+	else if (e.key == '=') evaluate();
 }
 
 
@@ -100,7 +103,7 @@ function appendDigit(digit) {
 	if(resultScreen.textContent == '0') {
 		resultScreen.textContent = digit;
 		return;
-	}
+	} 
 
 	resultScreen.textContent += digit;
 }
