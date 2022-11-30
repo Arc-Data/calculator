@@ -114,6 +114,7 @@ function handleInput(e) {
 }
 
 function appendDecimal() {
+	if(shouldMoveScreen) moveScreen();
 	console.log(resultScreen.textContent.indexOf('.') !== -1)
 	if(resultScreen.textContent.indexOf('.') !== -1) return;
 	resultScreen.textContent += '.';
