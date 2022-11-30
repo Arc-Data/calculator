@@ -110,6 +110,7 @@ function handleInput(e) {
 	else if(e.key === 'Backspace') backSpace();
 	else if (e.key == '/' || e.key == '+' || e.key == '-' || e.key == '*') checkOperation(e.key)
 	else if (e.key == 'Enter' || e.key == '=') evaluate();
+	else if (e.key == '.') appendDecimal();
 }
 
 function appendDecimal() {
